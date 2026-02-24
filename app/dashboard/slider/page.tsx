@@ -2,6 +2,7 @@
 
 import GalleryManager from "@/app/components/GalleryManager";
 
+
 export default function SliderPage() {
   return (
     <GalleryManager

@@ -16,6 +16,7 @@ export default function CreateSetPage() {
 
   const [Editor, setEditor] = useState<any>(null);
   const [title, setTitle] = useState("");
+  const [pageUrl, setPageUrl] = useState("");
   const [content, setContent] = useState("");
   const [mainImage, setMainImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -44,6 +45,7 @@ export default function CreateSetPage() {
 
       const formData = new FormData();
       formData.append("title", title);
+      formData.append("pageUrl", pageUrl);
       formData.append("content", content);
       formData.append("mainImage", mainImage);
 
@@ -62,7 +64,7 @@ export default function CreateSetPage() {
 
   return (
     <div className="p-6 max-w-4xl">
-      <h1 className="text-2xl font-bold mb-6">Create Set</h1>
+      <h1 className="text-2xl font-bold mb-6">Create Setup</h1>
 
       {/* Title */}
       <div className="mb-4">
@@ -110,6 +112,16 @@ export default function CreateSetPage() {
             }}
           />
         )}
+      </div>
+
+      <div className="mb-4">
+        <label className="block mb-2 font-medium">Page Url</label>
+        <input
+          type="text"
+          className="w-full border p-2 rounded"
+          value={pageUrl}
+          onChange={(e) => setPageUrl(e.target.value)}
+        />
       </div>
 
       {/* Submit */}

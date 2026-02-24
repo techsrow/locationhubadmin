@@ -28,6 +28,7 @@ export default function SetupDetailPage() {
   const [Editor, setEditor] = useState<any>(null);
   const [setupData, setSetupData] = useState<SetupType | null>(null);
   const [title, setTitle] = useState("");
+  const [slug, setSlug] = useState("");
   const [content, setContent] = useState("");
   const [mainImage, setMainImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -53,6 +54,7 @@ export default function SetupDetailPage() {
       const res = await api.get(`/setups/id/${id}`);
       setSetupData(res.data);
       setTitle(res.data.title);
+      setSlug(res.data.slug);
       setContent(res.data.content);
     } catch (error) {
       console.error(error);
@@ -142,6 +144,15 @@ export default function SetupDetailPage() {
             }
           />
         )}
+      </div>
+
+      <div className="mb-4">
+        <label className="block mb-2 font-medium">Page Url</label>
+        <input
+          className="w-full border p-2 rounded"
+          value={slug}
+          onChange={(e) => setTitle(e.target.value)}
+        />
       </div>
 
       <button

@@ -19,6 +19,7 @@ interface SetType {
   title: string;
   mainImage: string;
   content: string;
+  pageUrl : string;
 }
 
 export default function SetDetailPage() {
@@ -28,6 +29,7 @@ export default function SetDetailPage() {
   const [Editor, setEditor] = useState<any>(null); // CKEditor build
   const [setData, setSetData] = useState<SetType | null>(null);
   const [title, setTitle] = useState("");
+  const [pageUrl, setPageUrl] = useState("");
   const [content, setContent] = useState("");
   const [mainImage, setMainImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -49,6 +51,7 @@ export default function SetDetailPage() {
       const res = await api.get(`/set/${id}`);
       setSetData(res.data);
       setTitle(res.data.title);
+      setPageUrl(res.data.pageUrl);
       setContent(res.data.content);
     } catch (error) {
       console.error(error);
@@ -66,6 +69,7 @@ export default function SetDetailPage() {
 
       const formData = new FormData();
       formData.append("title", title);
+      formData.append("pageUrl", pageUrl);
       formData.append("content", content);
 
       if (mainImage) {
@@ -162,6 +166,16 @@ export default function SetDetailPage() {
             }}
           />
         )}
+      </div>
+
+       <div className="mb-4">
+        <label className="block mb-2 font-medium">Page Url</label>
+        <input
+          type="text"
+          className="w-full border p-2 rounded"
+          value={pageUrl}
+          onChange={(e) => setPageUrl(e.target.value)}
+        />
       </div>
 
       {/* UPDATE BUTTON */}

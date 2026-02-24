@@ -22,6 +22,8 @@ import { CSS } from "@dnd-kit/utilities";
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
 import toast from "react-hot-toast";
+import { getFileUrl } from "@/lib/fileUrl";
+
 
 
 
@@ -42,8 +44,7 @@ function SortableItem({
     transition,
   };
 
-  const baseURL =
-    process.env.NEXT_PUBLIC_API_URL?.replace("/api", "") || "";
+
 
   return (
     <div
@@ -69,7 +70,7 @@ function SortableItem({
   </div>
 )}
       <img
-        src={`${baseURL}${image[imageKey]}`}
+        src={getFileUrl(image[imageKey])}
         className="w-full h-48 object-cover cursor-pointer"
         onClick={() => onPreview(image)}
       />
@@ -94,13 +95,16 @@ export default function GalleryManager({
   imageKey = "imageUrl",
   orderKey = "displayorder",
   showTitle = false,
+  showPageUrl = false,
 }: {
   endpoint: string;
   imageKey?: string;
   orderKey?: string;
   showTitle?: boolean;
+  showPageUrl?: boolean;
 }) {
   const [title, setTitle] = useState("");
+  const [pageUrl, setPageUrl] = useState("");
 
   const [images, setImages] = useState<any[]>([]);
   
@@ -165,6 +169,16 @@ const handleUpload = async (e: any) => {
     if (showTitle) {
       formData.append("title", title);
     }
+
+     if (showPageUrl && !pageUrl) {
+      toast.error("Page URL is required");
+      return;
+    }
+
+    if (showPageUrl) {
+      formData.append("pageUrl", pageUrl);
+    }
+
 
     for (let file of e.target.files) {
       formData.append("image", file);
@@ -249,7 +263,15 @@ const handleUpload = async (e: any) => {
       className="w-full border p-2 rounded"
     />
   )}
-
+  {showPageUrl && (
+  <input
+    type="text"
+    placeholder="Enter Page URL"
+    value={pageUrl}
+    onChange={(e) => setPageUrl(e.target.value)}
+    className="w-full border p-2 rounded"
+  />
+)}
   <label
     className="flex flex-col items-center justify-center 
                w-full h-40 border-2 border-dashed 
@@ -266,6 +288,8 @@ const handleUpload = async (e: any) => {
       className="hidden"
     />
   </label>
+
+
 </div>
 
 
@@ -340,9 +364,10 @@ const handleUpload = async (e: any) => {
           onClick={() => setPreview(null)}
         >
           <img
-            src={`${baseURL}${preview[imageKey]}`}
-            className="max-h-[85vh] rounded-xl shadow-2xl"
-          />
+  src={getFileUrl(preview[imageKey])}
+  className="max-h-[85vh] rounded-xl shadow-2xl"
+/>
+
         </div>
       )}
     </div>

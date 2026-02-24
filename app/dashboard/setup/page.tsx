@@ -50,7 +50,7 @@ export default function SetupListPage() {
         <h1 className="text-2xl font-bold">Setups</h1>
 
         <Link
-          href="/dashboard/setups/create"
+          href="/dashboard/setup/create"
           className="bg-black text-white px-4 py-2 rounded"
         >
           + Create Setup

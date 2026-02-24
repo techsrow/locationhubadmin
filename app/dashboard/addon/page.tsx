@@ -14,6 +14,7 @@ export default function AddOnPage() {
   imageKey="imageUrl"
   orderKey="displayorder"
   showTitle={true}
+  showPageUrl={true}
 />
 
     </div>

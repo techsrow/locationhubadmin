@@ -27,7 +27,10 @@ export default function Sidebar() {
     { name: "Home Slider", path: "/dashboard/slider", icon: "🖼️" },
     { name: "Our Set", path: "/dashboard/set", icon: "🏛️" },
     { name: "Add-On Services", path: "/dashboard/addon", icon: "➕" },
-    { name: "Setups (Pages)", path: "/dashboard/setup", icon: "📄" },
+    { name: "Setups", path: "/dashboard/setup", icon: "📄" },
+    { name: "Testimonial", path: "/dashboard/testimonial", icon: "📄" },
+    { name: "Props", path: "/dashboard/props", icon: "📄" },
+    { name: "Make Up Artist", path: "/dashboard/makeup-artist", icon: "📄" },
   ];
 
   return (
