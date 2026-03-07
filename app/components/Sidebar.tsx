@@ -30,7 +30,7 @@ export default function Sidebar() {
 
     { name: "Products", path: "/dashboard/products", icon: "📦" },
     { name: "Slots", path: "/dashboard/slots", icon: "⏰" },
-    { name: "Bookings", path: "/dashboard/bookings", icon: "📑" },
+    { name: "Bookings", path: "/dashboard/booking", icon: "📑" },
     { name: "Calendar", path: "/dashboard/calendar", icon: "📅" },
 
     { name: "Bride Gallery", path: "/dashboard/bride", icon: "👰" },

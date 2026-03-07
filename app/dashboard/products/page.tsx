@@ -33,17 +33,23 @@ export default function ProductsPage() {
     fetchProducts();
   }, []);
 
-  const deleteProduct = async (id: string) => {
-    const confirmDelete = confirm("Delete this product?");
-    if (!confirmDelete) return;
+const deleteProduct = async (id: string) => {
 
-    try {
-      await api.delete(`/products/${id}`);
-      setProducts(products.filter((p) => p.id !== id));
-    } catch (error) {
-      console.error("Delete failed", error);
-    }
-  };
+  const confirmDelete = confirm("Delete this product?");
+  if (!confirmDelete) return;
+
+  try {
+
+    await api.delete(`/products/${id}`);
+
+    setProducts(products.filter((p) => p.id !== id));
+
+  } catch (err: any) {
+
+    alert(err?.response?.data?.message || "Delete failed");
+
+  }
+};
 
   if (loading) {
     return <div className="p-6">Loading products...</div>;
@@ -123,12 +129,12 @@ export default function ProductsPage() {
                     Slots
                   </Link>
 
-                  <button
-                    onClick={() => deleteProduct(product.id)}
-                    className="text-red-600 hover:underline"
-                  >
-                    Delete
-                  </button>
+                <button
+  onClick={() => deleteProduct(product.id)}
+  className="text-red-600 hover:underline"
+>
+  Delete
+</button>
 
                 </td>
 
