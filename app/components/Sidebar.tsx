@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 export default function Sidebar() {
+
   const pathname = usePathname();
   const router = useRouter();
 
@@ -19,32 +20,54 @@ export default function Sidebar() {
         : "text-gray-400 hover:bg-gray-800 hover:text-white"
     }`;
 
-  // 🔥 Centralized Navigation Config
+  /* -----------------------
+     Navigation
+  ----------------------- */
+
   const navItems = [
+
     { name: "Dashboard", path: "/dashboard", icon: "📊" },
+
+    { name: "Products", path: "/dashboard/products", icon: "📦" },
+    { name: "Slots", path: "/dashboard/slots", icon: "⏰" },
+    { name: "Bookings", path: "/dashboard/bookings", icon: "📑" },
+    { name: "Calendar", path: "/dashboard/calendar", icon: "📅" },
+
     { name: "Bride Gallery", path: "/dashboard/bride", icon: "👰" },
     { name: "Groom Gallery", path: "/dashboard/groom", icon: "🤵" },
+
     { name: "Home Slider", path: "/dashboard/slider", icon: "🖼️" },
     { name: "Our Set", path: "/dashboard/set", icon: "🏛️" },
+
     { name: "Add-On Services", path: "/dashboard/addon", icon: "➕" },
+
     { name: "Setups", path: "/dashboard/setup", icon: "📄" },
-    { name: "Testimonial", path: "/dashboard/testimonial", icon: "📄" },
-    { name: "Props", path: "/dashboard/props", icon: "📄" },
-    { name: "Make Up Artist", path: "/dashboard/makeup-artist", icon: "📄" },
+    { name: "Testimonial", path: "/dashboard/testimonial", icon: "⭐" },
+    { name: "Props", path: "/dashboard/props", icon: "🎭" },
+
+    { name: "Make Up Artist", path: "/dashboard/makeup-artist", icon: "💄" }
+
   ];
 
   return (
+
     <aside className="w-72 bg-[#0f172a] text-white flex flex-col p-6">
+
       {/* Logo */}
+
       <div className="mb-12">
         <h1 className="text-2xl font-bold tracking-wide">
-          Locations<span className="text-blue-400">Admin</span>
+          Locations
+          <span className="text-blue-400">Admin</span>
         </h1>
       </div>
 
       {/* Navigation */}
+
       <nav className="flex-1 space-y-2">
+
         {navItems.map((item) => (
+
           <Link
             key={item.path}
             href={item.path}
@@ -53,16 +76,22 @@ export default function Sidebar() {
             <span>{item.icon}</span>
             {item.name}
           </Link>
+
         ))}
+
       </nav>
 
       {/* Logout */}
+
       <button
         onClick={logout}
         className="mt-6 bg-red-600 hover:bg-red-700 transition px-4 py-3 rounded-lg"
       >
         Logout
       </button>
+
     </aside>
+
   );
+
 }

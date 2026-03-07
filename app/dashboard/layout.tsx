@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Sidebar from "@/app/components/Sidebar";
 import Header from "@/app/components/Header";
@@ -10,23 +11,56 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
     const token = localStorage.getItem("token");
-    if (!token) router.push("/login");
-  }, []);
+
+    if (!token) {
+      router.push("/login");
+    } else {
+      setLoading(false);
+    }
+
+  }, [router]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        Loading...
+      </div>
+    );
+  }
 
   return (
-    <div className="flex h-screen bg-gray-100">
+
+    <div className="flex min-h-screen bg-gray-100">
+
+      {/* Sidebar */}
+
       <Sidebar />
 
-      <div className="flex-1 flex flex-col">
+      {/* Main Content */}
+
+      <div className="flex flex-col flex-1">
+
+        {/* Header */}
+
         <Header />
-        <main className="flex-1 p-10 overflow-y-auto">
+
+        {/* Page Content */}
+
+        <main className="flex-1 p-8 overflow-y-auto">
           {children}
         </main>
+
       </div>
+
     </div>
+
   );
+
 }
