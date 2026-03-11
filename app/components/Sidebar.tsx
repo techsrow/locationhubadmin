@@ -29,7 +29,7 @@ export default function Sidebar() {
     { name: "Dashboard", path: "/dashboard", icon: "📊" },
 
     { name: "Products", path: "/dashboard/products", icon: "📦" },
-    { name: "Slots", path: "/dashboard/slots", icon: "⏰" },
+    { name: "Lock Slots & Date", path: "/dashboard/lock-date", icon: "⏰" },
     { name: "Bookings", path: "/dashboard/booking", icon: "📑" },
     { name: "Calendar", path: "/dashboard/calendar", icon: "📅" },
 
